@@ -1,0 +1,16 @@
+{
+  "operationConfigs": [
+    {
+      "apiSource": "llm-budget-limits-v1",
+      "operations": [
+        {
+          "resource": "/",
+          "methods": [
+            "POST"
+          ]
+        }
+      ]
+    }
+  ],
+  "operationConfigType": "proxy"
+}

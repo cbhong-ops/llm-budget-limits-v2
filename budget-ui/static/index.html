@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apigee LLM GW Manager</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>Apigee LLM GW Manager</h1>
+            <div class="org-selector">
+                <input type="text" id="orgInput" placeholder="Enter Apigee Organization Name">
+                <button id="loadProductsBtn">Load Products</button>
+            </div>
+        </header>
+
+        <main>
+            <section class="products-section">
+                <h2>API Products</h2>
+                <div class="loading" id="productsLoading" style="display: none;">Loading products...</div>
+                <ul id="productList" class="item-list">
+                    <!-- Products will be loaded here -->
+                </ul>
+            </section>
+
+            <section class="details-section" id="detailsSection" style="display: none;">
+                <div class="section-header">
+                    <h2 id="selectedProductName">Select a Product</h2>
+                    <button id="addOpBtn" class="primary-btn">Add LLM Budget</button>
+                </div>
+                
+                <div class="operations-container">
+                    <h3>LLM Budgets</h3>
+                    <div class="loading" id="opsLoading" style="display: none;">Loading operations...</div>
+                    <div id="operationsList" class="grid-container">
+                        <!-- Operations will be loaded here -->
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Modal for Add/Edit Operation -->
+        <div class="modal" id="opModal" style="display: none;">
+            <div class="modal-content">
+                <span class="close-btn" id="closeModalBtn">&times;</span>
+                <h2 id="modalTitle">Add LLM Budget</h2>
+                <form id="opForm">
+                    <input type="hidden" id="editOpIndex" value="-1">
+                    
+                    <div class="form-group">
+                        <label for="apiProxySelect">API Proxy</label>
+                        <select id="apiProxySelect" required>
+                            <option value="">Select a Proxy</option>
+                            <!-- Proxies will be loaded here -->
+                        </select>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label for="modelInput">Model</label>
+                        <input type="text" id="modelInput" placeholder="e.g., gemini-1.5-pro" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="budgetInput">Budget(USD)</label>
+                        <input type="text" id="budgetInput" placeholder="Budget(USD)">
+                    </div>
+                    <div class="form-group">
+                        <label for="intervalInput">Interval</label>
+                        <input type="text" id="intervalInput" placeholder="Interval">
+                    </div>
+                    <div class="form-group">
+                        <label for="timeunitInput">Time Unit</label>
+                        <select id="timeunitInput">
+                            <option value="">Select Time Unit</option>
+                            <option value="minute">Minute</option>
+                            <option value="hour">Hour</option>
+                            <option value="day">Day</option>
+                            <option value="month">Month</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPriceInput">Input Price per M</label>
+                        <input type="text" id="inputPriceInput" placeholder="Input Price per M">
+                    </div>
+                    <div class="form-group">
+                        <label for="outputPriceInput">Output Price per M</label>
+                        <input type="text" id="outputPriceInput" placeholder="Output Price per M">
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="primary-btn" id="saveOpBtn">Save</button>
+                        <button type="button" class="secondary-btn" id="cancelOpBtn">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
