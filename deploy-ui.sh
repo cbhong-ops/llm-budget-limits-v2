@@ -42,10 +42,12 @@ echo "Checking if Service Account exists: $SA_EMAIL"
 if ! gcloud iam service-accounts describe "$SA_EMAIL" --project "$PROJECT_ID" &>/dev/null; then
   echo "Creating Service Account: $SA_NAME"
   gcloud iam service-accounts create "$SA_NAME" --display-name "LLM Budget Quota Service Account" --project "$PROJECT_ID"
+  echo "Waiting 10 seconds for IAM propagation..."
+  sleep 10
   echo "Granting roles..."
-  gcloud projects add-iam-policy-binding "$PROJECT_ID" --member "serviceAccount:$SA_EMAIL" --role "roles/apigee.admin" --condition=None &>/dev/null
-  gcloud projects add-iam-policy-binding "$PROJECT_ID" --member "serviceAccount:$SA_EMAIL" --role "roles/iam.serviceAccountUser" --condition=None &>/dev/null
-  gcloud projects add-iam-policy-binding "$PROJECT_ID" --member "serviceAccount:$SA_EMAIL" --role "roles/serviceusage.serviceUsageConsumer" --condition=None &>/dev/null
+  gcloud projects add-iam-policy-binding "$PROJECT_ID" --member "serviceAccount:$SA_EMAIL" --role "roles/apigee.admin" --condition=None
+  gcloud projects add-iam-policy-binding "$PROJECT_ID" --member "serviceAccount:$SA_EMAIL" --role "roles/iam.serviceAccountUser" --condition=None
+  gcloud projects add-iam-policy-binding "$PROJECT_ID" --member "serviceAccount:$SA_EMAIL" --role "roles/serviceusage.serviceUsageConsumer" --condition=None
 fi
 
 
