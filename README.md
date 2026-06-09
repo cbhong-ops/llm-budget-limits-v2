@@ -21,13 +21,13 @@ It is an improvement upon [llm-budget-limits-v1](https://github.com/cbhong-ops/l
 -   `budget-ui/`: Web UI for managing LLM Operations and budgets (Python Flask)
     -   Calls Apigee APIs to manage `llmOperationGroup` in API Products.
 -   `notebook/`: Jupyter notebook for testing
-    -   `llm_budget_limits_v1.ipynb`: Test notebook designed to be run in Colab Enterprise.
+    -   `llm_budget_limits_v2.ipynb`: Test notebook designed to be run in Colab Enterprise.
 
 ---
 
 ## Architecture and Workflow
 
-### 1. Configuration via UI (`llm-budget-ui`)
+### 1. Configuration via UI (`llm-budget-ui-v2`)
 -   Users select an API Product in the UI and configure the budget and pricing in two steps:
     1.  **Global Budget Setup**: To manage the overall budget across all models, create a configuration with the **Model** name set to `ALL`. Specify the **Budget** (in USD), **Interval**, and **Time Unit**, without entering any unit prices.
     2.  **Model-Specific Pricing Setup**: For each individual model (e.g., `gemini-2.5-flash`), enter the specific token unit prices:

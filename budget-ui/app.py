@@ -19,7 +19,7 @@ app = Flask(__name__, static_url_path='', static_folder='static')
 
 def get_access_token():
     try:
-        # Cloud Run 환경의 Metadata Server에서 직접 토큰을 가져옵니다.
+        # Retrieve token directly from Cloud Run Metadata Server
         url = "http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token"
         headers = {"Metadata-Flavor": "Google"}
         resp = requests.get(url, headers=headers)

@@ -1,7 +1,7 @@
 {
   "operationConfigs": [
     {
-      "apiSource": "llm-budget-limits-v1",
+      "apiSource": "llm-budget-limits-v2",
       "operations": [
         {
           "resource": "/",

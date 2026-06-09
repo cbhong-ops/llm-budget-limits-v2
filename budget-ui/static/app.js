@@ -241,7 +241,6 @@ function openModal(mode, index = -1) {
                 }
             });
         }
-        
         const op = ops[index];
         editOpIndex.value = index;
         
@@ -391,7 +390,7 @@ async function saveOperation(e) {
         
         if (!response.ok) {
             const data = await response.json();
-            alert(`Failed to save: ${data.error || 'Unknown error'}`);
+            alert(`Failed to save: ${data.error || 'Unknown error'}\nDetails: ${data.details || ''}`);
             selectProduct(currentProduct.name);
         }
     } catch (error) {
@@ -453,7 +452,7 @@ async function deleteOperation(index) {
         
         if (!response.ok) {
             const data = await response.json();
-            alert(`Failed to delete: ${data.error || 'Unknown error'}`);
+            alert(`Failed to delete: ${data.error || 'Unknown error'}\nDetails: ${data.details || ''}`);
             selectProduct(currentProduct.name);
         }
     } catch (error) {
